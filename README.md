@@ -17,8 +17,8 @@
 
 ## Technologies Used
 
-- **Qt Framework** (e.g., Qt5/Qt6)
-- **C++ / PyQt / PySide** *(whichever you used)*
+- **Qt6.2.9** 
+- **C++**
 - Standard widgets like:
   - QPushButton
   - QLineEdit
@@ -30,7 +30,7 @@
 ### Prerequisites
 
 - Qt Creator or any C++ IDE with Qt setup
-- OR Python 3.x with PyQt5 / PySide2
+
 
 ### Clone the Repository
 
