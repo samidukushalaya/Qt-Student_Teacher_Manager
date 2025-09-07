@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>background.jpg</file>
+        <file>loginimg.png</file>
+        <file>40c9fe86c8a559c5c1597f1abc82997a.jpg</file>
+    </qresource>
+</RCC>

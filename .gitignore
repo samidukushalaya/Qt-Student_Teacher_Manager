@@ -1,0 +1,38 @@
+# Qt build files
+*.pro.user
+*.qbs.user
+*.pro.user.*
+*.qbs.user.*
+
+# Build directories
+build/
+bin/
+obj/
+debug/
+release/
+
+# Compiled object files
+*.o
+*.obj
+*.so
+*.dll
+*.dylib
+*.exe
+
+# Qt Creator backup files
+*.autosave
+*.qmlproject.user
+
+# Logs and temp
+*.log
+*.tmp
+*.swp
+
+# IDE specific
+.vscode/
+.idea/
+*.suo
+*.ncb
+*.opensdf
+*.user
+*.cache
