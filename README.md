@@ -16,7 +16,7 @@
 
 ## 📸 Screenshots
 
-> <img = <img src="https://raw.githubusercontent.com/samidukushalaya/samidukushalaya/main/project_demo/screnshot(12).png" width="300"> 
+> <img src="https://raw.githubusercontent.com/samidukushalaya/Qt-Student_Teacher_Manager/main/project_demo/Screenshot(12).png" width="300"> 
 
 
 ---
