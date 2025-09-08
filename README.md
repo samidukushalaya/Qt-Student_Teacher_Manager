@@ -16,7 +16,7 @@
 
 ## 📸 Screenshots
 
-> ![App Screenshot](C:\Users\hp\Pictures\Screenshots\Screenshots(12).png)
+> <img = <img src="https://raw.githubusercontent.com/samidukushalaya/samidukushalaya/main/project_demo/screnshot(12).png" width="300"> 
 
 
 ---
