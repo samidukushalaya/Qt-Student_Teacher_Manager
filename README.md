@@ -48,5 +48,7 @@ cd Qt-Student_Teacher_Manager
 - click the LMS pro file
 - In Qt creator -> Build & Run -> select Desktop Qt 6.9.2 MinGW 64-bit or latest version  Build
 - To setup the sqlite DB
+    - Open  Qt -> Edit 
     - in LMS -> Headers -> hod.h
     - in hod.d -> line 29 set current path of the Stu.DB (it will be the repo clone path..)
+- Now press ctrl + R or the run button 
