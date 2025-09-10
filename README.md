@@ -40,7 +40,7 @@
 
 
 ### 📥 Clone the Repository
-
+- Forked the repo 
 ```bash
 git clone https://github.com/yourusername/Qt-Student_Teacher_Manager.git
 cd Qt-Student_Teacher_Manager 
