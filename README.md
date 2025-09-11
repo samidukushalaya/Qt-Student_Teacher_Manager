@@ -51,4 +51,4 @@ cd Qt-Student_Teacher_Manager
     - Open  Qt -> Edit 
     - in LMS -> Headers -> hod.h
     - in hod.d -> line 29 set current path of the Stu.DB (it will be the repo clone path..)
-- Now press ctrl + R or the run button 
+- Now press ctrl + R or cick run..
