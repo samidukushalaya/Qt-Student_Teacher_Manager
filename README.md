@@ -45,6 +45,8 @@
 git clone https://github.com/yourusername/Qt-Student_Teacher_Manager.git
 cd Qt-Student_Teacher_Manager 
 ```
+### 📡 Run the Code 
+
 - click the LMS pro file
 - In Qt creator -> Build & Run -> select Desktop Qt 6.9.2 MinGW 64-bit or latest version  Build
 - To setup the sqlite DB
