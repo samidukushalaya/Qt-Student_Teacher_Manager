@@ -14,7 +14,7 @@
 
 ---
 
-## 📸 Screenshots
+## 📸 Screenshots!
 <p align="center">
  <img src="https://raw.githubusercontent.com/samidukushalaya/Qt-Student_Teacher_Manager/main/project_demo/Screenshot (12).png" width="300" /> <br><br>
  <img src="https://raw.githubusercontent.com/samidukushalaya/Qt-Student_Teacher_Manager/main/project_demo/Screenshot (13).png" width="300" align ="rigth" /> 
