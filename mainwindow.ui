@@ -17,7 +17,7 @@
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="helloLabel">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -30,7 +30,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:700;&quot;&gt;Hello,&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="welcomeLabel">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -43,7 +43,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;Welcome&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="imgLabel">
     <property name="geometry">
      <rect>
       <x>170</x>
@@ -59,7 +59,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="userLineEdit">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -76,8 +76,14 @@ background-color: rgb(71, 213, 213);
     <property name="text">
      <string/>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+    <property name="placeholderText">
+     <string>Username</string>
+    </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="passwordLineEdit">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -91,43 +97,56 @@ background-color: rgb(71, 213, 213);
 background-color: rgb(71, 213, 213);
 </string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+    <property name="placeholderText">
+     <string>Password</string>
+    </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="loginButton">
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>270</y>
+      <y>263</y>
       <width>75</width>
-      <height>24</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#pushButton{
-font:bold;
-background-color: rgb(217, 184, 255);
-border-radius:5px;
-border:1px solid;
-
-
-
-}
-#pushButton:pressed{
-	background-color: rgb(255, 255, 255);
-
+     <string notr="true">QPushButton {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
 }
 
-</string>
+QPushButton:hover {
+    background-color: #5aa0f0;
+}
+
+QPushButton:pressed {
+    background-color: #3a78c2;
+}
+
+QPushButton:disabled {
+    background-color: #b5b5b5;
+    color: #f0f0f0;
+}</string>
     </property>
     <property name="text">
      <string>Login</string>
     </property>
    </widget>
-   <zorder>label_4</zorder>
-   <zorder>label_2</zorder>
-   <zorder>label_3</zorder>
-   <zorder>lineEdit</zorder>
-   <zorder>lineEdit_2</zorder>
-   <zorder>pushButton</zorder>
+   <zorder>imgLabel</zorder>
+   <zorder>helloLabel</zorder>
+   <zorder>welcomeLabel</zorder>
+   <zorder>userLineEdit</zorder>
+   <zorder>passwordLineEdit</zorder>
+   <zorder>loginButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -135,7 +154,7 @@ border:1px solid;
      <x>0</x>
      <y>0</y>
      <width>706</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1297</width>
-    <height>678</height>
+    <width>1216</width>
+    <height>646</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,10 +30,10 @@
       <attribute name="title">
        <string>Student</string>
       </attribute>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="welcomeLabel">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>40</x>
          <y>10</y>
          <width>131</width>
          <height>41</height>
@@ -43,67 +43,92 @@
         <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:700;&quot;&gt;Welcome..&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:700;&quot;&gt;Welcome&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="scaledContents">
         <bool>false</bool>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
       </widget>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="addStudentButton">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>500</y>
-         <width>75</width>
-         <height>24</height>
+         <width>111</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">#pushButton{
-font:bold;
-background-color: rgb(217, 184, 255);
-border-radius:5px;
-border:1px solid;
-
-
-
+        <string notr="true">QPushButton {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
 }
-#pushButton:pressed{
-	background-color: rgb(255, 255, 255);
-}</string>
+
+QPushButton:hover {
+    background-color: #5aa0f0;
+}
+
+QPushButton:pressed {
+    background-color: #3a78c2;
+}
+
+QPushButton:disabled {
+    background-color: #b5b5b5;
+    color: #f0f0f0;
+}
+</string>
        </property>
        <property name="text">
         <string>Add</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="modifyStudentButton">
        <property name="geometry">
         <rect>
          <x>130</x>
          <y>500</y>
-         <width>75</width>
-         <height>24</height>
+         <width>111</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">#pushButton_2{
-font:bold;
-background-color: rgb(217, 184, 255);
-border-radius:5px;
-border:1px solid;
-
-
-
+        <string notr="true">QPushButton {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
 }
-#pushButton_2:pressed{
-	background-color: rgb(255, 255, 255);
-}</string>
+
+QPushButton:hover {
+    background-color: #5aa0f0;
+}
+
+QPushButton:pressed {
+    background-color: #3a78c2;
+}
+
+QPushButton:disabled {
+    background-color: #b5b5b5;
+    color: #f0f0f0;
+}
+</string>
        </property>
        <property name="text">
         <string>Modify</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="studentIdLineEdit">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -113,11 +138,36 @@ border:1px solid;
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px;
-background-color: rgb(188, 188, 188);</string>
+        <string notr="true">QLineEdit {
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    padding: 6px 8px;
+    background-color: #ffffff;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    border: 1px solid #4a90e2;
+    background-color: #ffffff;
+}
+
+QLineEdit:disabled {
+    background-color: #f0f0f0;
+    color: #a0a0a0;
+}
+</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+       <property name="placeholderText">
+        <string>Student ID</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_2">
+      <widget class="QLineEdit" name="studentNameLineEdit">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -127,11 +177,33 @@ background-color: rgb(188, 188, 188);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px;
-background-color: rgb(188, 188, 188);</string>
+        <string notr="true">QLineEdit {
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    padding: 6px 8px;
+    background-color: #ffffff;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    border: 1px solid #4a90e2;
+    background-color: #ffffff;
+}
+
+QLineEdit:disabled {
+    background-color: #f0f0f0;
+    color: #a0a0a0;
+}
+</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>Student Name</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_3">
+      <widget class="QLineEdit" name="studentNicLineEdit">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -141,11 +213,33 @@ background-color: rgb(188, 188, 188);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px;
-background-color: rgb(188, 188, 188);</string>
+        <string notr="true">QLineEdit {
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    padding: 6px 8px;
+    background-color: #ffffff;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    border: 1px solid #4a90e2;
+    background-color: #ffffff;
+}
+
+QLineEdit:disabled {
+    background-color: #f0f0f0;
+    color: #a0a0a0;
+}
+</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>NIC</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_4">
+      <widget class="QLineEdit" name="studentAgeLineEdit">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -155,11 +249,33 @@ background-color: rgb(188, 188, 188);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px;
-background-color: rgb(188, 188, 188);</string>
+        <string notr="true">QLineEdit {
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    padding: 6px 8px;
+    background-color: #ffffff;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    border: 1px solid #4a90e2;
+    background-color: #ffffff;
+}
+
+QLineEdit:disabled {
+    background-color: #f0f0f0;
+    color: #a0a0a0;
+}
+</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>Age</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_5">
+      <widget class="QLineEdit" name="studentBirthdateLineEdit">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -169,11 +285,33 @@ background-color: rgb(188, 188, 188);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px;
-background-color: rgb(188, 188, 188);</string>
+        <string notr="true">QLineEdit {
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    padding: 6px 8px;
+    background-color: #ffffff;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    border: 1px solid #4a90e2;
+    background-color: #ffffff;
+}
+
+QLineEdit:disabled {
+    background-color: #f0f0f0;
+    color: #a0a0a0;
+}
+</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>Birthdate</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_6">
+      <widget class="QLineEdit" name="studentEmailLineEdit">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -183,79 +321,151 @@ background-color: rgb(188, 188, 188);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px;
-background-color: rgb(188, 188, 188);</string>
+        <string notr="true">QLineEdit {
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    padding: 6px 8px;
+    background-color: #ffffff;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    border: 1px solid #4a90e2;
+    background-color: #ffffff;
+}
+
+QLineEdit:disabled {
+    background-color: #f0f0f0;
+    color: #a0a0a0;
+}
+</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>e-mail</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="removeStudentButton">
        <property name="geometry">
         <rect>
-         <x>650</x>
-         <y>600</y>
-         <width>75</width>
-         <height>24</height>
+         <x>640</x>
+         <y>540</y>
+         <width>111</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">#pushButton_3{
-font:bold;
-background-color: rgb(217, 184, 255);
-border-radius:5px;
-border:1px solid;
-
-
-
+        <string notr="true">QPushButton {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
 }
-#pushButton_3:pressed{
-	background-color: rgb(255, 255, 255);
-}</string>
+
+QPushButton:hover {
+    background-color: #5aa0f0;
+}
+
+QPushButton:pressed {
+    background-color: #3a78c2;
+}
+
+QPushButton:disabled {
+    background-color: #b5b5b5;
+    color: #f0f0f0;
+}
+</string>
        </property>
        <property name="text">
         <string>Remove</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_9">
+      <widget class="QLineEdit" name="removeStudentLineEdit">
        <property name="geometry">
         <rect>
          <x>520</x>
-         <y>560</y>
+         <y>500</y>
          <width>330</width>
          <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px;
-background-color: rgb(188, 188, 188);</string>
+        <string notr="true">QLineEdit {
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    padding: 6px 8px;
+    background-color: #ffffff;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    border: 1px solid #4a90e2;
+    background-color: #ffffff;
+}
+
+QLineEdit:disabled {
+    background-color: #f0f0f0;
+    color: #a0a0a0;
+}
+</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>Student ID for removal</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="clearStudentButton">
        <property name="geometry">
         <rect>
          <x>60</x>
-         <y>550</y>
-         <width>75</width>
-         <height>24</height>
+         <y>540</y>
+         <width>111</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">#pushButton_4{
-font:bold;
-background-color: rgb(217, 184, 255);
-border-radius:5px;
-border:1px solid;
-
-
-
+        <string notr="true">QPushButton {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
 }
-#pushButton_4:pressed{
-	background-color: rgb(255, 255, 255);
-}</string>
+
+QPushButton:hover {
+    background-color: #5aa0f0;
+}
+
+QPushButton:pressed {
+    background-color: #3a78c2;
+}
+
+QPushButton:disabled {
+    background-color: #b5b5b5;
+    color: #f0f0f0;
+}
+</string>
        </property>
        <property name="text">
         <string>Clear</string>
        </property>
+       <property name="autoDefault">
+        <bool>true</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
       </widget>
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="studentDepartmentComboBox">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -265,8 +475,13 @@ border:1px solid;
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px;
-background-color: rgb(188, 188, 188);</string>
+        <string notr="true">QComboBox {
+	border: 1px solid #c5c5c5;
+	border-radius: 4px;
+	padding: 6px 8px;
+	background-color: #ffffff;
+	font-size: 14px;
+}</string>
        </property>
        <item>
         <property name="text">
@@ -279,7 +494,7 @@ background-color: rgb(188, 188, 188);</string>
         </property>
        </item>
       </widget>
-      <widget class="QComboBox" name="comboBox_2">
+      <widget class="QComboBox" name="studentCourseComboBox">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -289,8 +504,13 @@ background-color: rgb(188, 188, 188);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px;
-background-color: rgb(188, 188, 188);</string>
+        <string notr="true">QComboBox {
+	border: 1px solid #c5c5c5;
+	border-radius: 4px;
+	padding: 6px 8px;
+	background-color: #ffffff;
+	font-size: 14px;
+}</string>
        </property>
        <item>
         <property name="text">
@@ -303,38 +523,49 @@ background-color: rgb(188, 188, 188);</string>
         </property>
        </item>
       </widget>
-      <widget class="QTableView" name="tableView">
+      <widget class="QTableView" name="studentTableView">
        <property name="geometry">
         <rect>
          <x>300</x>
          <y>60</y>
          <width>891</width>
-         <height>451</height>
+         <height>401</height>
         </rect>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_9">
+      <widget class="QPushButton" name="loadTableStudentButton">
        <property name="geometry">
         <rect>
-         <x>1020</x>
-         <y>520</y>
-         <width>160</width>
-         <height>24</height>
+         <x>1060</x>
+         <y>480</y>
+         <width>111</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">#pushButton_9{
-font:bold;
-background-color: rgb(217, 184, 255);
-border-radius:5px;
-border:1px solid;
-
-
-
+        <string notr="true">QPushButton {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
 }
-#pushButton_9:pressed{
-	background-color: rgb(255, 255, 255);
-}</string>
+
+QPushButton:hover {
+    background-color: #5aa0f0;
+}
+
+QPushButton:pressed {
+    background-color: #3a78c2;
+}
+
+QPushButton:disabled {
+    background-color: #b5b5b5;
+    color: #f0f0f0;
+}
+</string>
        </property>
        <property name="text">
         <string>Load Table</string>
@@ -345,10 +576,10 @@ border:1px solid;
       <attribute name="title">
        <string>Teacher</string>
       </attribute>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="welcomeLabel_2">
        <property name="geometry">
         <rect>
-         <x>0</x>
+         <x>50</x>
          <y>40</y>
          <width>141</width>
          <height>41</height>
@@ -358,13 +589,16 @@ border:1px solid;
         <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:700;&quot;&gt;Welcome..&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:700;&quot;&gt;Welcome&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="scaledContents">
         <bool>false</bool>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_7">
+      <widget class="QLineEdit" name="teacherIdLineEdit">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -374,11 +608,36 @@ border:1px solid;
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px;
-background-color: rgb(188, 188, 188);</string>
+        <string notr="true">QLineEdit {
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    padding: 6px 8px;
+    background-color: #ffffff;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    border: 1px solid #4a90e2;
+    background-color: #ffffff;
+}
+
+QLineEdit:disabled {
+    background-color: #f0f0f0;
+    color: #a0a0a0;
+}
+</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+       <property name="placeholderText">
+        <string>Teacher ID</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_8">
+      <widget class="QLineEdit" name="teacherNameLineEdit">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -388,11 +647,33 @@ background-color: rgb(188, 188, 188);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px;
-background-color: rgb(188, 188, 188);</string>
+        <string notr="true">QLineEdit {
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    padding: 6px 8px;
+    background-color: #ffffff;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    border: 1px solid #4a90e2;
+    background-color: #ffffff;
+}
+
+QLineEdit:disabled {
+    background-color: #f0f0f0;
+    color: #a0a0a0;
+}
+</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>Teacher Name</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_10">
+      <widget class="QLineEdit" name="teacherNicLineEdit">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -402,11 +683,33 @@ background-color: rgb(188, 188, 188);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px;
-background-color: rgb(188, 188, 188);</string>
+        <string notr="true">QLineEdit {
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    padding: 6px 8px;
+    background-color: #ffffff;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    border: 1px solid #4a90e2;
+    background-color: #ffffff;
+}
+
+QLineEdit:disabled {
+    background-color: #f0f0f0;
+    color: #a0a0a0;
+}
+</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>NIC</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_11">
+      <widget class="QLineEdit" name="teacherAgeLineEdit">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -416,11 +719,33 @@ background-color: rgb(188, 188, 188);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px;
-background-color: rgb(188, 188, 188);</string>
+        <string notr="true">QLineEdit {
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    padding: 6px 8px;
+    background-color: #ffffff;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    border: 1px solid #4a90e2;
+    background-color: #ffffff;
+}
+
+QLineEdit:disabled {
+    background-color: #f0f0f0;
+    color: #a0a0a0;
+}
+</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>Birthdate</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_3">
+      <widget class="QComboBox" name="teacherDepartmentComboBox">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -430,8 +755,13 @@ background-color: rgb(188, 188, 188);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px;
-background-color: rgb(188, 188, 188);</string>
+        <string notr="true">QComboBox {
+	border: 1px solid #c5c5c5;
+	border-radius: 4px;
+	padding: 6px 8px;
+	background-color: #ffffff;
+	font-size: 14px;
+}</string>
        </property>
        <item>
         <property name="text">
@@ -444,7 +774,7 @@ background-color: rgb(188, 188, 188);</string>
         </property>
        </item>
       </widget>
-      <widget class="QComboBox" name="comboBox_4">
+      <widget class="QComboBox" name="teacherCourseComboBox">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -454,8 +784,13 @@ background-color: rgb(188, 188, 188);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px;
-background-color: rgb(188, 188, 188);</string>
+        <string notr="true">QComboBox {
+	border: 1px solid #c5c5c5;
+	border-radius: 4px;
+	padding: 6px 8px;
+	background-color: #ffffff;
+	font-size: 14px;
+}</string>
        </property>
        <item>
         <property name="text">
@@ -468,176 +803,237 @@ background-color: rgb(188, 188, 188);</string>
         </property>
        </item>
       </widget>
-      <widget class="QLabel" name="label_4">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>20</y>
-         <width>71</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;Hello&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_5">
+      <widget class="QPushButton" name="addTeacherButton">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>480</y>
-         <width>75</width>
-         <height>24</height>
+         <width>91</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">#pushButton_5{
-font:bold;
-background-color: rgb(217, 184, 255);
-border-radius:5px;
-border:1px solid;
-
-
-
+        <string notr="true">QPushButton {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
 }
-#pushButton_5:pressed{
-	background-color: rgb(255, 255, 255);
-}</string>
+
+QPushButton:hover {
+    background-color: #5aa0f0;
+}
+
+QPushButton:pressed {
+    background-color: #3a78c2;
+}
+
+QPushButton:disabled {
+    background-color: #b5b5b5;
+    color: #f0f0f0;
+}
+</string>
        </property>
        <property name="text">
         <string>Add</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_6">
+      <widget class="QPushButton" name="modifyTeacherButton">
        <property name="geometry">
         <rect>
-         <x>140</x>
+         <x>120</x>
          <y>480</y>
-         <width>75</width>
-         <height>24</height>
+         <width>91</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">#pushButton_6{
-font:bold;
-background-color: rgb(217, 184, 255);
-border-radius:5px;
-border:1px solid;
-
-
-
+        <string notr="true">QPushButton {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
 }
-#pushButton_6:pressed{
-	background-color: rgb(255, 255, 255);
-}</string>
+
+QPushButton:hover {
+    background-color: #5aa0f0;
+}
+
+QPushButton:pressed {
+    background-color: #3a78c2;
+}
+
+QPushButton:disabled {
+    background-color: #b5b5b5;
+    color: #f0f0f0;
+}
+</string>
        </property>
        <property name="text">
         <string>Modify</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_7">
+      <widget class="QPushButton" name="clearTeacherButton">
        <property name="geometry">
         <rect>
-         <x>70</x>
-         <y>530</y>
-         <width>75</width>
-         <height>24</height>
+         <x>60</x>
+         <y>520</y>
+         <width>91</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">#pushButton_7{
-font:bold;
-background-color: rgb(217, 184, 255);
-border-radius:5px;
-border:1px solid;
-
-
-
+        <string notr="true">QPushButton {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
 }
-#pushButton_7:pressed{
-	background-color: rgb(255, 255, 255);
-}</string>
+
+QPushButton:hover {
+    background-color: #5aa0f0;
+}
+
+QPushButton:pressed {
+    background-color: #3a78c2;
+}
+
+QPushButton:disabled {
+    background-color: #b5b5b5;
+    color: #f0f0f0;
+}
+</string>
        </property>
        <property name="text">
         <string>Clear</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_12">
+      <widget class="QLineEdit" name="removeTeacherLineEdit">
        <property name="geometry">
         <rect>
-         <x>540</x>
-         <y>540</y>
+         <x>560</x>
+         <y>470</y>
          <width>260</width>
          <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px;
-background-color: rgb(188, 188, 188);</string>
+        <string notr="true">QLineEdit {
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    padding: 6px 8px;
+    background-color: #ffffff;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    border: 1px solid #4a90e2;
+    background-color: #ffffff;
+}
+
+QLineEdit:disabled {
+    background-color: #f0f0f0;
+    color: #a0a0a0;
+}
+</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>Teacher ID for removal</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_8">
+      <widget class="QPushButton" name="removeTeacherButton">
        <property name="geometry">
         <rect>
-         <x>640</x>
-         <y>590</y>
-         <width>75</width>
-         <height>24</height>
+         <x>650</x>
+         <y>510</y>
+         <width>91</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">#pushButton_8{
-font:bold;
-background-color: rgb(217, 184, 255);
-border-radius:5px;
-border:1px solid;
-
-
-
+        <string notr="true">QPushButton {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
 }
-#pushButton_8:pressed{
-	background-color: rgb(255, 255, 255);
-}</string>
+
+QPushButton:hover {
+    background-color: #5aa0f0;
+}
+
+QPushButton:pressed {
+    background-color: #3a78c2;
+}
+
+QPushButton:disabled {
+    background-color: #b5b5b5;
+    color: #f0f0f0;
+}
+</string>
        </property>
        <property name="text">
         <string>Remove</string>
        </property>
       </widget>
-      <widget class="QTableView" name="tableView_2">
+      <widget class="QTableView" name="teacherTableView">
        <property name="geometry">
         <rect>
          <x>400</x>
          <y>30</y>
-         <width>781</width>
-         <height>451</height>
+         <width>771</width>
+         <height>411</height>
         </rect>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_10">
+      <widget class="QPushButton" name="loadTableTeacherButton">
        <property name="geometry">
         <rect>
-         <x>1050</x>
-         <y>500</y>
-         <width>130</width>
-         <height>24</height>
+         <x>1070</x>
+         <y>460</y>
+         <width>101</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">#pushButton_10{
-font:bold;
-background-color: rgb(217, 184, 255);
-border-radius:5px;
-border:1px solid;
-
-
-
+        <string notr="true">QPushButton {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
 }
-#pushButton_10:pressed{
-	background-color: rgb(255, 255, 255);
-}</string>
+
+QPushButton:hover {
+    background-color: #5aa0f0;
+}
+
+QPushButton:pressed {
+    background-color: #3a78c2;
+}
+
+QPushButton:disabled {
+    background-color: #b5b5b5;
+    color: #f0f0f0;
+}
+</string>
        </property>
        <property name="text">
         <string>Load Table</string>

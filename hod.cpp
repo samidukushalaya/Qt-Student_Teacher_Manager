@@ -1,51 +1,19 @@
 #include "hod.h"
 #include "ui_hod.h"
-#include<QSqlQuery>
+
+#include <QSqlQuery>
 #include <QSqlDatabase>
 #include <QtSql>
 #include <QDebug>
-
-
-
+#include "DatabaseManager.h"
 
 HOD::HOD(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::HOD)
 {
     ui->setupUi(this);
-    ui->lineEdit->setPlaceholderText("    Student ID");
-    ui->lineEdit_2->setPlaceholderText("    Student Name");
-    ui->lineEdit_3->setPlaceholderText("    NIC");
-    ui->lineEdit_4->setPlaceholderText("    Age");
-    ui->lineEdit_5->setPlaceholderText("    Birthday");
-    ui->lineEdit_6->setPlaceholderText("    E-mail");
-    ui->comboBox->setPlaceholderText("    Deparment");
-    ui->comboBox_2->setPlaceholderText("    Course");
-    ui->lineEdit_9->setPlaceholderText("    Enter the Student ID..");
-    ui->lineEdit_7->setPlaceholderText("    Teacher ID");
-    ui->lineEdit_8->setPlaceholderText("    Teacher Name");
-    ui->lineEdit_10->setPlaceholderText("   NIC");
-    ui->lineEdit_11->setPlaceholderText("    Age");
-    ui->comboBox_3->setPlaceholderText("    Deparment");
-    ui->comboBox_4->setPlaceholderText("    Course");
-    ui->lineEdit_12->setPlaceholderText("    Enter the Teacher ID..");
 
-    if (!connopen()){
-        qDebug()<<"Not connected..";
-
-    }
-
-    else {
-           qDebug()<<"connected..";
-    }
-
-
-
-
-
-
-
-
+    setupConnections();
 }
 
 HOD::~HOD()
@@ -53,394 +21,320 @@ HOD::~HOD()
     delete ui;
 }
 
-void HOD::on_pushButton_clicked()
+void HOD::onAddStudentButtonClicked()
 {
+    QString name = ui->studentNameLineEdit->text();
+    QString nic = ui->studentNicLineEdit->text();
+    int age = ui->studentAgeLineEdit->text().toInt();
+    QString birthdate = ui->studentBirthdateLineEdit->text();
+    QString email = ui->studentEmailLineEdit->text();
+    QString department = ui->studentDepartmentComboBox->currentText();
+    QString course = ui->studentCourseComboBox->currentText();
 
+    QSqlDatabase db = DatabaseManager::instance().db();
+    QSqlQuery qry(db);
+    qry.prepare("INSERT INTO students(name, nic, age, birthdate, email, department, course)"
+                "VALUES(:name, :nic, :age, :birthdate, :email, :department, :course)");
 
-   QString Name,email,departments,course, id,nic,age,bday;
+    qry.bindValue(":name", name);
+    qry.bindValue(":nic", nic);
+    qry.bindValue(":age", age);
+    qry.bindValue(":birthdate", birthdate);
+    qry.bindValue(":email", email);
+    qry.bindValue(":department", department);
+    qry.bindValue(":course", course);
 
-    id=ui->lineEdit->text();
-    Name=ui->lineEdit_2->text();
-    nic=ui->lineEdit_3->text();
-    age=ui->lineEdit_4->text();
-    bday=ui->lineEdit_5->text();
-    email=ui->lineEdit_6->text();
-    departments=ui->comboBox->currentText();
-    course=ui->comboBox_2->currentText();
-
-    if (!connopen()){
-        qDebug()<<"failed";
-            return;
+    if (qry.exec())
+    {
+        qDebug() << "Student saved";
     }
-
-    connopen();
-
-    QSqlQuery qry;
-    qry.prepare("insert into table_1(ID,name,nic,age,bday,email,department,course)"
-                "values(:ID,:name,:nic,:age,:bday,:email,:department,:course)");
-
-    qry.bindValue(":ID",id);
-    qry.bindValue(":name",Name);
-    qry.bindValue(":nic",nic);
-    qry.bindValue(":age",age);
-    qry.bindValue(":bday",bday);
-    qry.bindValue(":email",email);
-    qry.bindValue(":department",departments);
-    qry.bindValue(":course",course);
-
-    if (qry.exec()){
-        qDebug()<<"Saved";
+    else
+    {
+        qDebug() << "Student NOT saved";
     }
-    else{
-        qDebug()<<"Not Saved..";
-    }
-    connclose();
-
-
-
-
-
-
-
-
-
 }
 
-
-
-
-void HOD::on_comboBox_textActivated(QString)
+void HOD::onDepartmentStudentComboBoxChanged()
 {
-    QString department;
-    department=ui->comboBox->currentText();
-    if (department=="Computing"){
-        ui->comboBox_2->clear();
-        ui->comboBox_2->addItem("software Enginerning");
-        ui->comboBox_2->addItem("Information Tecnology");
-    }
-    else{
-        ui->comboBox_2->clear();
-        ui->comboBox_2->addItem("Managment");
-        ui->comboBox_2->addItem("Human Resoures");
-    }
+    QString department = ui->studentDepartmentComboBox->currentText();
+    ui->studentCourseComboBox->clear();
 
-
+    if (department.compare(QString("Computing")) == 0)  // 'compare' returns 0 if the QStrings are equal
+    {
+        ui->studentCourseComboBox->addItem("Software Engineering");
+        ui->studentCourseComboBox->addItem("Information Tecnology");
+    }
+    else
+    {
+        ui->studentCourseComboBox->addItem("Management");
+        ui->studentCourseComboBox->addItem("Human Resources");
+    }
 }
 
-
-void HOD::on_pushButton_4_clicked()
+void HOD::onClearStudentButtonClicked()
 {
-
-    ui->lineEdit->clear();
-    ui->lineEdit_2->clear();
-    ui->lineEdit_3->clear();
-    ui->lineEdit_4->clear();
-    ui->lineEdit_5->clear();
-    ui->lineEdit_6->clear();
-    ui->comboBox->currentText();
-    ui->comboBox_2->currentText();
-
+    ui->studentIdLineEdit->clear();
+    ui->studentNameLineEdit->clear();
+    ui->studentNicLineEdit->clear();
+    ui->studentAgeLineEdit->clear();
+    ui->studentBirthdateLineEdit->clear();
+    ui->studentEmailLineEdit->clear();
+    ui->studentDepartmentComboBox->currentText();
+    ui->studentCourseComboBox->currentText();
 }
 
-
-void HOD::on_pushButton_2_clicked()
+void HOD::onModifyStudentButtonClicked()
 {
-    QString Name,email,departments,course, id,nic,age,bday;
+    int id = ui->studentIdLineEdit->text().toInt();
+    QString name = ui->studentNameLineEdit->text();
+    QString nic = ui->studentNicLineEdit->text();
+    int age = ui->studentAgeLineEdit->text().toInt();
+    QString birthdate = ui->studentBirthdateLineEdit->text();
+    QString email = ui->studentEmailLineEdit->text();
+    QString department = ui->studentDepartmentComboBox->currentText();
+    QString course = ui->studentCourseComboBox->currentText();
 
-    id=ui->lineEdit->text();
-    Name=ui->lineEdit_2->text();
-    nic=ui->lineEdit_3->text();
-    age=ui->lineEdit_4->text();
-    bday=ui->lineEdit_5->text();
-    email=ui->lineEdit_6->text();
-    departments=ui->comboBox->currentText();
-    course=ui->comboBox_2->currentText();
+    QSqlDatabase db = DatabaseManager::instance().db();
+    QSqlQuery qry(db);
+    qry.prepare("UPDATE students SET name=:name, nic=:nic, age=:age, birthdate=:birthdate, email=:email, department=:department, course=:course where id=:id");
+    qry.bindValue(":id", id);
+    qry.bindValue(":name", name);
+    qry.bindValue(":nic", nic);
+    qry.bindValue(":age", age);
+    qry.bindValue(":birthdate", birthdate);
+    qry.bindValue(":email", email);
+    qry.bindValue(":department", department);
+    qry.bindValue(":course", course);
 
-    if (!connopen()){
-        qDebug()<<"failed";
-        return;
+    if (qry.exec())
+    {
+        qDebug()<<"Student updated";
     }
-
-    connopen();
-    QSqlQuery qry;
-    qry.prepare("update  table_1 set ID=:id,name=:name,nic=:nic, age=:age,bday=:bday, email=:email, department=:departments, course=:course where ID=:id");
-                qry.bindValue(":id",id);
-                qry.bindValue(":name",Name);
-                qry.bindValue(":nic",nic);
-                qry.bindValue(":age",age);
-                qry.bindValue(":bday",bday);
-                qry.bindValue(":email",email);
-                qry.bindValue(":departments",departments);
-                qry.bindValue(":course",course);
-        if (qry.exec()){
-        qDebug()<<"Updated";
+    else
+    {
+        qDebug()<<"Student NOT updated";
     }
-    else{
-        qDebug()<<"Not Updated";
-    }
-    connclose();
 }
 
-
-void HOD::on_pushButton_3_clicked()
+void HOD::onRemoveStudentButtonClicked()
 {
-    QString id;
+    int id = ui->removeStudentLineEdit->text().toInt();
 
-    id=ui->lineEdit_9->text();
+    QSqlDatabase db = DatabaseManager::instance().db();
+    QSqlQuery qry(db);
+    qry.prepare("DELETE FROM students WHERE id=:id");
+    qry.bindValue(":id", id);
 
-    if (!connopen()){
-        qDebug()<<"failed";
-        return;
+    if (qry.exec())
+    {
+        qDebug() << "Student deleted";
     }
-
-    connopen();
-    QSqlQuery qry;
-    qry.prepare("Delete from table_1 where ID=:id");
-    qry.bindValue(":id",id);
-
-    if (qry.exec()){
-        qDebug()<<"DELETE";
+    else
+    {
+        qDebug() << "Student NOT deleted";
     }
-    else{
-        qDebug()<<"not delete";
-    }
-    connclose();
 }
 
-
-void HOD::on_tableView_activated(const QModelIndex &index)
+void HOD::onStudentTableViewActivated(const QModelIndex &index)
 {
-    QString val = ui->tableView->model()->data(index).toString();
+    QString val = ui->studentTableView->model()->data(index).toString();
 
-    if (!connopen()) {
-        qDebug() << "Failed to open DB";
-        return;
-    }
-
-    QSqlQuery qry(DB);
+    QSqlDatabase db = DatabaseManager::instance().db();
+    QSqlQuery qry(db);
     qry.prepare(R"(
-        SELECT * FROM table_1
-        WHERE ID = :val OR name = :val OR nic = :val
-              OR age = :val OR bday = :val OR email = :val
+        SELECT * FROM students
+        WHERE id = :val OR name = :val OR nic = :val
+              OR age = :val OR birthdate = :val OR email = :val
               OR department = :val OR course = :val
     )");
     qry.bindValue(":val", val);
 
-    if (qry.exec()) {
-        if (qry.next()) {   // only one row expected
-            ui->lineEdit->setText(qry.value(0).toString());
-            ui->lineEdit_2->setText(qry.value(1).toString());
-            ui->lineEdit_3->setText(qry.value(2).toString());
-            ui->lineEdit_4->setText(qry.value(3).toString());
-            ui->lineEdit_5->setText(qry.value(4).toString());
-            ui->lineEdit_6->setText(qry.value(5).toString());
-            ui->comboBox->setCurrentText(qry.value(6).toString());
-            ui->comboBox_2->setCurrentText(qry.value(7).toString());
+    if (qry.exec())
+    {
+        if (qry.next()) // Only one row selected
+        {
+            ui->studentIdLineEdit->setText(qry.value(0).toString());
+            ui->studentNameLineEdit->setText(qry.value(1).toString());
+            ui->studentNicLineEdit->setText(qry.value(2).toString());
+            ui->studentAgeLineEdit->setText(qry.value(3).toString());
+            ui->studentBirthdateLineEdit->setText(qry.value(4).toString());
+            ui->studentEmailLineEdit->setText(qry.value(5).toString());
+            ui->studentDepartmentComboBox->setCurrentText(qry.value(6).toString());
+            ui->studentDepartmentComboBox->setCurrentText(qry.value(7).toString());
         }
-    } else {
+    }
+    else
+    {
         qDebug() << "Query failed:" << qry.lastError().text();
     }
-
-    connclose();
 }
 
 
-void HOD::on_pushButton_9_clicked()
+void HOD::onLoadTableStudentButtonClicked()
 {
-    QSqlQueryModel *modal = new QSqlQueryModel();
+    QSqlQueryModel *model = new QSqlQueryModel();
 
-    connopen();
-    modal->setQuery("SELECT * FROM table_1", DB);
+    QSqlDatabase db = DatabaseManager::instance().db();
+    model->setQuery("SELECT * FROM students", db);
 
-    ui->tableView->setModel(modal);
-    connclose();
-
-
-
+    ui->studentTableView->setModel(model);
 }
 
-
-void HOD::on_pushButton_5_clicked()
+void HOD::onAddTeacherButtonClicked()
 {
-    QString id,name,nic,age,department,course;
-    id=ui->lineEdit_7->text();
-    name=ui->lineEdit_8->text();
-    nic=ui->lineEdit_10->text();
-    age=ui->lineEdit_11->text();
-    department=ui->comboBox_3->currentText();
-    course=ui->comboBox_4->currentText();
+    QString teacherName = ui->teacherNameLineEdit->text();
+    QString teacherNic = ui->teacherNicLineEdit->text();
+    int teacherAge = ui->teacherAgeLineEdit->text().toInt();
+    QString department = ui->teacherDepartmentComboBox->currentText();
+    QString course = ui->teacherCourseComboBox->currentText();
 
-    if (!connopen()){
-        qDebug()<<"failed";
-        return;
+    QSqlDatabase db = DatabaseManager::instance().db();
+    QSqlQuery qry(db);
+    qry.prepare("INSERT INTO teachers (name, nic, age, department, course)"
+                "values(:name, :nic, :age, :department, :course)");
+
+    qry.bindValue(":name", teacherName);
+    qry.bindValue(":nic", teacherNic);
+    qry.bindValue(":age", teacherAge);
+    qry.bindValue(":department", department);
+    qry.bindValue(":course", course);
+
+    if (qry.exec())
+    {
+        qDebug()<<"Teacher saved";
     }
-    connopen();
-
-    QSqlQuery qry;
-    qry.prepare("insert into table_2(ID,name,NIC,Age,Departments,Course)"
-                "values(:ID,:name,:nic,:age,:department,:course)");
-
-                qry.bindValue(":ID",id);
-                qry.bindValue(":name",name);
-                qry.bindValue(":nic",nic);
-                qry.bindValue(":age",age);
-                qry.bindValue(":department",department);
-                qry.bindValue(":course",course);
-
-                if (qry.exec()){
-                    qDebug()<<"Saved";
-                }
-                else{
-                    qDebug()<<"Not Saved";
-                }
-                connclose();
-
-
-
-
-
-
-
-
-}
-
-
-void HOD::on_pushButton_10_clicked()
-{
-    QSqlQueryModel *modal = new QSqlQueryModel();
-
-    connopen();
-    modal->setQuery("SELECT * FROM table_2", DB);
-
-    ui->tableView_2->setModel(modal);
-    connclose();
-
-}
-
-
-void HOD::on_tableView_2_activated(const QModelIndex &index)
-{
-    QString val=ui->tableView_2->model()->data(index).toString();
-
-    if (!connopen()){
-        qDebug()<<"failed";
-        return;
+    else
+    {
+        qDebug() << "Teacher NOT saved";
     }
+}
 
-    connopen();
-    QSqlQuery qry;
-    qry.prepare("select * from table_2 where ID='"+val+"' or name='"+val+"' or NIC='"+val+"' or Age='"+val+"' or Departments='"+val+"' or Course='"+val+"'");
+void HOD::onLoadTableTeacherButtonClicked()
+{
+    QSqlQueryModel *model = new QSqlQueryModel();
 
-    if (qry.exec()){
-        while (qry.next()) {
+    QSqlDatabase db = DatabaseManager::instance().db();
+    model->setQuery("SELECT * FROM teachers", db);
 
-            //ui->txt_ID->setText(qry.value(0)).tostring());
-            ui->lineEdit_7->setText(qry.value(0).toString());
-            ui->lineEdit_8->setText(qry.value(1).toString());
-            ui->lineEdit_10->setText(qry.value(2).toString());
-            ui->lineEdit_11->setText(qry.value(3).toString());
-            ui->comboBox_3->setCurrentText(qry.value(4).toString());
-            ui->comboBox_4->setCurrentText(qry.value(5).toString());
+    ui->teacherTableView->setModel(model);
+}
 
+void HOD::onTeacherTableViewActivated(const QModelIndex &index)
+{
+    QString val = ui->teacherTableView->model()->data(index).toString();
+
+    QSqlDatabase db = DatabaseManager::instance().db();
+    QSqlQuery qry(db);
+    qry.prepare("SELECT * FROM teachers WHERE id=:val OR name=:val OR nic=:val OR age=:val OR department=:val OR course=:val");
+    qry.bindValue(":val", val);
+
+    if (qry.exec())
+    {
+        while (qry.next())
+        {
+            ui->teacherIdLineEdit->setText(qry.value(0).toString());
+            ui->teacherNameLineEdit->setText(qry.value(1).toString());
+            ui->teacherNicLineEdit->setText(qry.value(2).toString());
+            ui->teacherAgeLineEdit->setText(qry.value(3).toString());
+            ui->teacherDepartmentComboBox->setCurrentText(qry.value(4).toString());
+            ui->teacherCourseComboBox->setCurrentText(qry.value(5).toString());
         }
-        connclose();
     }
 }
 
-
-void HOD::on_pushButton_7_clicked()
+void HOD::onClearTeacherButtonClicked()
 {
-    ui->lineEdit_7->clear();
-    ui->lineEdit_8->clear();
-    ui->lineEdit_10->clear();
-    ui->lineEdit_11->clear();
-    ui->comboBox_3->currentText();
-    ui->comboBox_4->currentText();
+    ui->teacherIdLineEdit->clear();
+    ui->teacherNameLineEdit->clear();
+    ui->teacherNicLineEdit->clear();
+    ui->teacherAgeLineEdit->clear();
+    ui->teacherDepartmentComboBox->currentText();
+    ui->teacherCourseComboBox->currentText();
 
 }
 
-
-void HOD::on_pushButton_8_clicked()
+void HOD::onRemoveTeacherButtonClicked()
 {
-    QString id;
+    int id = ui->removeTeacherLineEdit->text().toInt();
 
-    id=ui->lineEdit_12->text();
+    QSqlDatabase db = DatabaseManager::instance().db();
+    QSqlQuery qry(db);
+    qry.prepare("DELETE FROM teachers WHERE id=:id");
+    qry.bindValue(":id", id);
 
-    if (!connopen()){
-        qDebug()<<"failed";
-        return;
+    if (qry.exec())
+    {
+        qDebug() << "Teacher deleted";
     }
-
-    connopen();
-    QSqlQuery qry;
-    qry.prepare("Delete from table_2 where ID=:id");
-    qry.bindValue(":id",id);
-
-    if (qry.exec()){
-        qDebug()<<"DELETE";
+    else
+    {
+        qDebug() << "Teacher NOT deleted";
     }
-    else{
-        qDebug()<<"not delete";
-    }
-    connclose();
 }
 
-
-void HOD::on_pushButton_6_clicked()
+void HOD::onModifyTeacherButtonClicked()
 {
-    QString id,name,nic,age,department,course;
-    id=ui->lineEdit_7->text();
-    name=ui->lineEdit_8->text();
-    nic=ui->lineEdit_10->text();
-    age=ui->lineEdit_11->text();
-    department=ui->comboBox_3->currentText();
-    course=ui->comboBox_4->currentText();
+    int teacherId = ui->teacherIdLineEdit->text().toInt();
+    QString teacherName=ui->teacherNameLineEdit->text();
+    QString teacherNic = ui->teacherNicLineEdit->text();
+    int teacherAge = ui->teacherAgeLineEdit->text().toInt();
+    QString department = ui->teacherDepartmentComboBox->currentText();
+    QString course = ui->teacherCourseComboBox->currentText();
 
-    if (!connopen()){
-        qDebug()<<"failed";
-        return;
+    QSqlDatabase db = DatabaseManager::instance().db();
+    QSqlQuery qry(db);
+    qry.prepare("UPDATE teachers SET name=:name, nic=:nic, age=:age, department=:department, course=:course WHERE id=:id");
+    qry.bindValue(":id", teacherId);
+    qry.bindValue(":name", teacherName);
+    qry.bindValue(":nic", teacherNic);
+    qry.bindValue(":age", teacherAge);
+    qry.bindValue(":department", department);
+    qry.bindValue(":course", course);
+
+    if (qry.exec())
+    {
+        qDebug() << "Teacher updated";
     }
-    connopen();
-    QSqlQuery qry;
-    qry.prepare("update  table_2 set ID=:id,name=:name,NIC=:nic,Age=:age,Departments=:department,Course=:course where ID=:id");
-    qry.bindValue(":id",id);
-    qry.bindValue(":name",name);
-    qry.bindValue(":nic",nic);
-    qry.bindValue(":age",age);
-    qry.bindValue(":department",department);
-    qry.bindValue(":course",course);
-
-    if (qry.exec()){
-        qDebug()<<"Updated";
+    else
+    {
+        qDebug() << "Teacher NOT updated";
     }
-    else{
-        qDebug()<<"Not Updated";
-    }
-    connclose();
-
-
-
-
-
 }
 
-
-
-
-
-void HOD::on_comboBox_3_currentTextChanged(const QString &arg1)
+void HOD::onDepartmentTeacherComboBoxChanged()
 {
-    QString department;
-    department=ui->comboBox_3->currentText();
-    if (department=="Computing"){
-        ui->comboBox_4->clear();
-        ui->comboBox_4->addItem("software Enginerning");
-        ui->comboBox_4->addItem("Information Tecnology");
+    QString department = ui->teacherDepartmentComboBox->currentText();
+    ui->teacherCourseComboBox->clear();
+
+    if (department.compare(QString("Computing")) == 0)  // 'compare' returns 0 if the QStrings are equal
+    {
+        ui->teacherCourseComboBox->addItem("Software Engineering");
+        ui->teacherCourseComboBox->addItem("Information Tecnology");
     }
-    else{
-        ui->comboBox_4->clear();
-        ui->comboBox_4->addItem("Managment");
-        ui->comboBox_4->addItem("Human Resoures");
+    else
+    {
+        ui->teacherCourseComboBox->addItem("Management");
+        ui->teacherCourseComboBox->addItem("Human Resources");
     }
 }
 
+void HOD::setupConnections()
+{
+    // Students connections
+    connect(ui->addStudentButton, &QPushButton::clicked, this, &HOD::onAddStudentButtonClicked);
+    connect(ui->modifyStudentButton, &QPushButton::clicked, this, &HOD::onModifyStudentButtonClicked);
+    connect(ui->removeStudentButton, &QPushButton::clicked, this, &HOD::onRemoveStudentButtonClicked);
+    connect(ui->clearStudentButton, &QPushButton::clicked, this, &HOD::onClearStudentButtonClicked);
+    connect(ui->studentDepartmentComboBox, &QComboBox::currentTextChanged, this, &HOD::onDepartmentStudentComboBoxChanged);
+    connect(ui->loadTableStudentButton, &QPushButton::clicked, this, &HOD::onLoadTableStudentButtonClicked);
+    connect(ui->studentTableView, &QTableView::activated, this, &HOD::onStudentTableViewActivated);
+
+    // Teachers connections
+    connect(ui->addTeacherButton, &QPushButton::clicked, this, &HOD::onAddTeacherButtonClicked);
+    connect(ui->modifyTeacherButton, &QPushButton::clicked, this, &HOD::onModifyTeacherButtonClicked);
+    connect(ui->removeTeacherButton, &QPushButton::clicked, this, &HOD::onRemoveTeacherButtonClicked);
+    connect(ui->clearTeacherButton, &QPushButton::clicked, this, &HOD::onClearTeacherButtonClicked);
+    connect(ui->teacherDepartmentComboBox, &QComboBox::currentTextChanged, this, &HOD::onDepartmentTeacherComboBoxChanged);
+    connect(ui->loadTableTeacherButton, &QPushButton::clicked, this, &HOD::onLoadTableTeacherButtonClicked);
+    connect(ui->teacherTableView, &QTableView::activated, this, &HOD::onTeacherTableViewActivated);
+}
