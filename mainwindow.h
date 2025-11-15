@@ -1,5 +1,4 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 
@@ -16,15 +15,14 @@ class MainWindow : public QMainWindow
 
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 
 private slots:
-    void on_pushButton_clicked();
+    void onLoginButtonClicked();
 
 private:
-    Ui::MainWindow *ui;
-    HOD *hod;
+    Ui::MainWindow* ui;
+    HOD* m_hod;
 };
-#endif // MAINWINDOW_H
