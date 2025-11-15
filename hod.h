@@ -26,7 +26,7 @@ public:
     bool connopen()
     {
         DB=QSqlDatabase::addDatabase("QSQLITE");
-        DB.setDatabaseName("C:/Users/hp/Desktop/LMS/Stu.db");
+        DB.setDatabaseName("C:/Users/hp/Desktop/langages/Qt-Student_Teacher_Manager/Stu.db");
 
         if(!DB.open()){
             qDebug()<<("failed");
