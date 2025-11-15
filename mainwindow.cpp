@@ -7,8 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->lineEdit->setPlaceholderText("    UserName");
-    ui->lineEdit_2->setPlaceholderText("    Password");
+    connect(ui->loginButton, &QPushButton::clicked, this, &MainWindow::onLoginButtonClicked);
 }
 
 MainWindow::~MainWindow()
@@ -16,26 +15,26 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::onLoginButtonClicked()
 {
-    QString username = ui->lineEdit->text();
-    QString password = ui->lineEdit_2->text();
+    QString username = ui->userLineEdit->text();
+    QString password = ui->passwordLineEdit->text();
 
-    if(username=="123" && password=="123"){
-
-      hod = new HOD(this);
-      hod->show();
+    if (username.compare(QString("admin")) == 0 && password.compare(QString("admin")) == 0)
+    {
+        m_hod = new HOD(this);
+        m_hod->show();
     }
-
-    else{
-        if(username=="123"){
-
-            ui->statusbar->showMessage("   Password is incorrect");}
-
-        else{
-            ui->statusbar->showMessage("   Username is incorrect");
-            }
-
+    else
+    {
+        if(username=="123")
+        {
+            ui->statusbar->showMessage("Password is incorrect");
+        }
+        else
+        {
+            ui->statusbar->showMessage("Username is incorrect");
+        }
     }
 
 }
