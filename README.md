@@ -1,6 +1,6 @@
  # 🎓 Qt Student-Teacher Manager 🧑‍🏫
 
-**Qt-Student_Teacher_Manager** is a simple GUI-based application built using the Qt framework. It provides an interface to manage students and teachers by allowing users to add and remove entries.
+**Qt-Student Teacher Manager** is a simple GUI-based application built using the Qt framework. It provides an interface to manage students and teachers by allowing users to add and remove entries.
 
 ---
 
